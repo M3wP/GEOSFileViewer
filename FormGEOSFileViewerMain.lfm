@@ -1,0 +1,11 @@
+object GEOSFileViewerMainForm: TGEOSFileViewerMainForm
+  Left = 545
+  Height = 656
+  Top = 121
+  Width = 948
+  Caption = 'C64/C128 GEOS File Viewer'
+  Menu = GEOSFileViewerMainDMod.MainMenu1
+  OnClose = FormClose
+  Position = poDefaultPosOnly
+  LCLVersion = '1.6.0.4'
+end

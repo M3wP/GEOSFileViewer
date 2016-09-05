@@ -1,0 +1,56 @@
+object GEOSWriteTextForm: TGEOSWriteTextForm
+  Left = 639
+  Height = 755
+  Top = 137
+  Width = 652
+  BorderIcons = [biSystemMenu]
+  Caption = 'geoWrite As Text...'
+  ClientHeight = 755
+  ClientWidth = 652
+  OnClose = FormClose
+  LCLVersion = '1.6.0.4'
+  object MemText: TMemo
+    Left = 8
+    Height = 678
+    Top = 34
+    Width = 636
+    Align = alClient
+    BorderSpacing.Around = 8
+    Font.Height = -13
+    Font.Name = 'Courier New'
+    ParentFont = False
+    ReadOnly = True
+    ScrollBars = ssVertical
+    TabOrder = 0
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 652
+    Caption = 'ToolBar1'
+    TabOrder = 1
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 35
+    Top = 720
+    Width = 652
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 35
+    ClientWidth = 652
+    TabOrder = 2
+    object Button1: TButton
+      Left = 568
+      Height = 25
+      Top = 0
+      Width = 75
+      Anchors = [akTop, akRight]
+      Caption = 'OK'
+      ModalResult = 1
+      OnClick = Button1Click
+      TabOrder = 0
+    end
+  end
+end

@@ -1,0 +1,19 @@
+object GEOSPaintImageForm: TGEOSPaintImageForm
+  Left = 876
+  Height = 736
+  Top = 115
+  Width = 656
+  Caption = 'geoPaint Viewer'
+  ClientHeight = 736
+  ClientWidth = 656
+  OnClose = FormClose
+  LCLVersion = '1.6.0.4'
+  object ImgPaint: TImage
+    Left = 8
+    Height = 720
+    Top = 8
+    Width = 640
+    Align = alBottom
+    BorderSpacing.Around = 8
+  end
+end
