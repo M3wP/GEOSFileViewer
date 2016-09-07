@@ -74,10 +74,7 @@ procedure TGEOSPaintImageForm.FormClose(Sender: TObject;
 procedure TGEOSPaintImageForm.ClearDisplay;
     begin
     if  Assigned(FGEOSPaintFile) then
-        FGEOSPaintFile.Free;
-
-    if  not Assigned(ImgPaint.Picture.Bitmap) then
-        ImgPaint.Picture.Bitmap:= TBitmap.Create;
+        FreeAndNil(FGEOSPaintFile);
 
     ImgPaint.Picture.Bitmap.SetSize(640, 720);
     ImgPaint.Picture.Bitmap.Canvas.Brush.Color:= clC64LightGrey;
@@ -88,6 +85,9 @@ procedure TGEOSPaintImageForm.ClearDisplay;
 procedure TGEOSPaintImageForm.InitialiseDisplay;
     begin
     ClearDisplay;
+
+    if  not Assigned(ImgPaint.Picture.Bitmap) then
+        ImgPaint.Picture.Bitmap:= TBitmap.Create;
 
     FGEOSPaintFile:= TGEOSPaintFile.Create(
             GEOSFileViewerMainDMod.D64Image,

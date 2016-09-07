@@ -61,7 +61,10 @@ implementation
 
 
 { TGEOSPaintFile }
-
+{$IFOPT R-}
+    {$DEFINE DEF_FLG_GEOSPNTUNDOR}
+{$ENDIF}
+{$R+}
 procedure TGEOSPaintFile.DoLoadFromImage;
     const
     VAL_COL_DEFAULTFGBG = $BF;
@@ -176,6 +179,10 @@ procedure TGEOSPaintFile.DoLoadFromImage;
         x:= 0;
         while m.Position < sz do
             begin
+//dengland  It seems that some files have the incorrect size...
+            if  x >= 160 then
+                Break;
+
             b:= m.ReadByte;
 
             if  b = 0 then
@@ -286,15 +293,18 @@ procedure TGEOSPaintFile.DoLoadFromImage;
             DoClearRowClrs;
             DoClearRowBits;
 
-            if  VLIRFork[i].Track > 0 then
-                begin
-                m.Clear;
-                FD64Image.GetDataChain(VLIRFork[i].Track, VLIRFork[i].Sector,
-                        m, sz);
-                m.Position:= 0;
-                DoDecodeDataBlock;
+            try
+                if  VLIRFork[i].Track > 0 then
+                    begin
+                    m.Clear;
+                    FD64Image.GetDataChain(VLIRFork[i].Track, VLIRFork[i].Sector,
+                            m, sz);
+                    m.Position:= 0;
+                    DoDecodeDataBlock;
+                    end;
+                except
+//              WriteLn(i);
                 end;
-
             DoPaintRows;
             DoCopyRows;
             end;
@@ -304,6 +314,10 @@ procedure TGEOSPaintFile.DoLoadFromImage;
         bm.Free;
         end;
     end;
+{$IFDEF DEFINE DEF_FLG_GEOSPNTUNDOR}
+    {$R-}
+{$ENDIF}
+
 
 constructor TGEOSPaintFile.Create(const AD64Image: TD64Image;
         const AEntry: TD64DirEntry);
